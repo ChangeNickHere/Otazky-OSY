@@ -104,10 +104,87 @@ TODO
 
 === Prvky ochrany souborů a adresářů v UNIXu
 
+Prvky ochrany se určují zvlášť pro:
+
+* majitele souboru (u - user)
+* skupinu uživatelů (g - group)
+* ostatní, svět (o - other)
+* všechny (a - all)
+
+Přidělují se práva pro:
+
+* soubor
+** čtení (r)
+** zápis (w)
+** provedení (spuštění - x)
+* adresář
+** výpis obsahu (r)
+** přejmenování (smazání) (w)
+** vstup do adresáře (x)
+
 === Linux – historie 
+Linux vytvořil student Linus Torvalds pomocí operačního systému Minix profesora Tannenbauma v roce 1991
+
+* Tento svůj systém oznámil v mailové konferenci 25. srpna 1991 V té době studoval na univerzitě v Helsinkách informatiku ve druhém ročníku
+* Používal PC 386 s 4 MB paměti
+
 === Vlastnosti OS Linux
+* Operační systém Linux je volně šiřitelný OS typu UNIX. Jeho autorem je Linus Torvalds a mnoho dalších programátorů v Internetu. Jádro Linuxu je volně šiřitelné (public domain) podle pravidel GNU General Public License (licence používaná u softwaru GNU).
+* Základem Linuxu je jádro, které je vlastně samotný Linux. K němu se potom nabalují další programy
+* Množiny programů tvoří distribuce
+* Existuje stovky distribucí 
+
 === Distribuce a jádro Linuxu
-=== MacOS.
+Balíky programů, dané dohromady nějakou firmou nebo skupinou lidí
+
+* komerční – platí se buď přímo za média (obvykle lze stáhnout zdarma verzi z ftp) nebo za podporu a manuály
+* nekomerční
+* překládané – uživatel si stáhne zdrojové texty a distribuci si sám přeloží
+* live – pracují přímo z CD, není nutný HD
+
+Linux je možno instalovat z CD (DVD), USB disku nebo po síti (FTP, lokální síť)
+* I v druhém případě potřebujeme instalační USB disk nebo CD ze kterého se zavede základní systém
+* Je možná i síťová instalace s nabootováním přes síť, ale musí to zvládat síťová karta
+* V případě překládané instalace se zavede základní systém a překladač z CD nebo USB disku, pak se z internetu stáhnou zdrojové kódy a celý systém se přeloží
+
+=== MacOS
+* Vlastní operační systém
+* Nebyl nikdy portován pro jiné platformy
+* Verze 1 až 9
+* Verze 1 až 8.1 pro M86k procesor
+* Verze 7.2 až 9 pro PPC
+* Od verze 8.0 pro G3 procesor
+* Od 8.6 pro G4 procesor
+* Verze 1 až 7.5.5 jsou volně šiřitelné
+* Verze 7.6 a novější ne
+* MacOS X
+
+Vývoj:
+
+* Systém 4.2 podpora 32 MB disků
+* Systém 5 – v prodeji velmi krátce
+* Systém 6 barvy
+* Systém 7 - nazván jako první MacOS 7
+
+MacOS 7:
+
+* Multitasking
+* Odpadkový koš
+* Sdílení souborů, Apple Talk
+* Aliasy (linky) – fungovaly i když byl cílový soubor překopírován
+* Doplňky – extension
+* Ovládací panely
+* Apple menu
+* AppleScript
+* TrueType fonty
+* Více disket, později na CD
+
+iOS:
+
+* Operační systém pro přenosná zařízení
+* iPod touch, iPad, iPhone
+* Původně chtěl Apple použít Android nebo upravený Linux
+* iOS je úpravou a zjednodušením Mac OS X
 
 == 3. Otázka
 === OS firmy Microsoft přehled, vlastnosti
