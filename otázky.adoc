@@ -66,11 +66,30 @@ TODO
 ** RTX — RealTime eXtension – nadstavba pro Windows
 
 == 2. Otázka
-=== UNIX – historie 
+=== UNIX – historie
+* Druhá polovina šedesátých let
+* Vyvinut ze systému Multics
+* Původně vyvinut jako systém pro zpracování textů
+* Autoři Ken Thompson a Denis Ritchie
+* Název vymyslel Brian Kernighan
+* Původně napsán v jazyce B, z kterého byl
+* Vyvinut v r. 1971 jazyk C
+
 === Vlastnosti OS UNIX
+* Multiprogramový
+* Multiuživatelský
+* Víceprocesorový
+* S terminálovým přístupem
+* Operační systém UNIX musí uživateli u terminálu vytvořit pocit, že počítač schovaný za terminálem je pouze" jeho.
+* Jádro běží v privilegovaném režimu
+* Obvykle je tvořeno jedním souborem – monolitický systém (v Linuxu /boot/vmlinuz)
+* Vše ostatní běží v uživatelském režimu
+
 === Souborové systémy v UNIXu
+
 === Prvky ochrany souborů a adresářů v UNIXu
-=== Linux – historie a vlastnosti OS Linux
+=== Linux – historie 
+=== Vlastnosti OS Linux
 === Distribuce a jádro Linuxu
 === MacOS.
 
