@@ -66,7 +66,8 @@ TODO
 ** RTX — RealTime eXtension – nadstavba pro Windows
 
 == 2. Otázka
-=== UNIX – historie a vlastnosti OS UNIX
+=== UNIX – historie 
+=== Vlastnosti OS UNIX
 === Souborové systémy v UNIXu
 === Prvky ochrany souborů a adresářů v UNIXu
 === Linux – historie a vlastnosti OS Linux
