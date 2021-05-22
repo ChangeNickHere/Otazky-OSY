@@ -1,0 +1,117 @@
+Zkouškové otázky z předmětu Operační systémy
+============================================
+:toc: 
+
+== 1. Otázka ==
+=== Co je operační systém. 
+Operační systém jsou programové
+moduly ve výpočetním systému, jež
+ovládají řízení prostředků, kterými je
+tento výpočetní systém vybaven, jako
+jsou procesory, paměť (operační i
+vnější), I/O zařízení a soubory dat.
+Operační systém rozhoduje spory, snaží
+se optimalizovat výkon a zjednodušují
+efektivní využívání výpočetního
+systému.
+
+===  Úkoly operačního systému. 
+* Správa a přidělování paměti – virtuální paměť
+* Správa procesů – synchronizace
+* Přidělování procesoru – multitasking
+* Řešení zablokování – deadlock
+* Správa systému souborů – virtuální souborový systém (VFS)
+* Správa uživatelů
+
+===  Zavedení operačního systému. 
+* Z BIOSu (Basic Input Output System –
+programovatelná paměť) nebo UEFI (Unified
+Extensible Firmware Interface) se zjistí
+médium, na kterém je OS
+* Na tomto médiu se na MBR (Master Boot
+Record) načte OS nebo zavaděč OS
+* Příklad Linux:
+** Zavaděč GRUB
+** Jádro /boot/vmlinuz a RAM disk /boot/initrd
+(nemusí být) se zavedou do paměti a
+převezmou řízení počítače
+
+=== Rozdělení operačních systémů. 
+* Podle správy uživatelů
+** Jednouživatelské (monouser)
+** Víceuživatelské (multiuser)
+*** Více uživatelů pracuje současně v reálném čase
+*** Musí zajistit rozdělení a oddělení prostředků (paměti) mezi uživatele
+* Podle počtu spuštěných programů
+** Jednoprogramové (monotasking)
+** Víceprogramové (multitasking) – více úloh je spuštěno současně
+* Podle schopnosti práce v síti
+** Lokální - nedokáží pracovat v síti bez přídavných modulů
+** Síťové - mají klientskou i serverovou verzi
+* Podle míry specializace
+** Speciální - pro jeden typ úloh
+** Univerzální - různé typy úloh
+
+===  Vlastnosti operačních systémů. 
+TODO
+
+===  Real time OS.
+* Zvláštní kategorie
+* Takové OS, které musí být schopny práce v reálném čase a reagovat okamžitě (reálně do určité časové hranice). Např. při řízení letadla nebo jaderné elektrárny, kde velké prodlevy jsou nemožné.
+* Musí reagovat okamžitě — horní časová hranice
+* Většinou mají malé jádro (mikrojádro), které ovládá jen základní funkce a na vše další se volají moduly
+* Příklady:
+** QNX
+** RTLinux – rozšíření jádra Linuxu
+** RTX — RealTime eXtension – nadstavba pro Windows
+
+== 2. Otázka
+=== UNIX – historie a vlastnosti OS UNIX
+=== Souborové systémy v UNIXu
+=== Prvky ochrany souborů a adresářů v UNIXu
+=== Linux – historie a vlastnosti OS Linux
+=== Distribuce a jádro Linuxu
+=== MacOS.
+
+== 3. Otázka
+=== OS firmy Microsoft přehled, vlastnosti
+=== Souborové systémy ve Windows, přehled, vlastnosti
+=== Prvky ochrany souborů a adresářů ve Windows.
+
+== 4. Otázka
+=== Správa paměti 
+=== Metoda správa jedné souvislé oblasti
+=== Metoda správa paměti pomocí sekcí
+
+== 5. Otázka
+=== Správa paměti 
+=== Metoda stránkování 
+=== Metoda stránkování na žádost
+
+== 6. Otázka
+=== Procesy
+=== Životní cyklus procesu
+
+== 7. Otázka
+=== Multitasking a jeho druhy
+
+== 8. Otázka
+=== Synchronizace procesů
+=== Kritická sekce a její řešení
+
+== 9. Otázka
+=== Synchronizační problémy
+
+== 10. Otázka
+=== Deadlock a jeho řešení
+
+== 11. Otázka
+=== Struktura odkládacího zařízení, soubor, adresář, plánování disku.
+
+== 12. Otázka
+=== Souborové systémy
+=== FAT
+=== NTFS
+=== UNIXové souborové systémy
+
+
