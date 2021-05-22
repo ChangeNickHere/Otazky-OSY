@@ -86,8 +86,24 @@ TODO
 * Vše ostatní běží v uživatelském režimu
 
 === Souborové systémy v UNIXu
+* Systém souborů extended FS, (e2fs, e4fs) XFS (Linux), ufs (Solaris), HFS (OS X)
+* UNIX (Linux) má jednotnou strukturu adresářů – měla by být jednotná na všech systémech
+* Norma POSIX a POSIX-2
+* Extended
+** Verze Ext (již se nepoužívá), Ext2, Ext3 a Ext4
+** Bloky mají velikost 512, 1024, 2048 nebo 4096 B.
+** První blok je boot blok.
+** Další bloky jsou rozděleny do skupin, každá obsahuje superblok s informacemi o celém disku - při poškození jednoho se použije jiny.
+** Informace o souborech jsou v tzv. i-node (i-uzel).
+** Volné místo se eviduje v řetězovém seznamu.
+** Moznost použít odkazy (linky)
+* XFS - Žurnálovací systém. 64 bitový - velikost souboru i souborového systému téměř neomezena. Jsou žurnálována metadata ale ne samotná data - rychlejší ale méně bezpečný než ext4.
+* ZFS - Zettabyte File System. 128 bitový systém. Má v sobe přímo integrován manažer logických oddílů. Až 1 ZB dat (1 ZB = 1 bilion TB). Umí automaticky opravovat chyby.
+* BTRFS - souborový systém podobny ZFS, založený na B stromech.
+* APFS – Apple File System (Starší HFS+) – pro Macos
 
 === Prvky ochrany souborů a adresářů v UNIXu
+
 === Linux – historie 
 === Vlastnosti OS Linux
 === Distribuce a jádro Linuxu
