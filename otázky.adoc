@@ -1,6 +1,7 @@
 Zkouškové otázky z předmětu Operační systémy
 ============================================
 :toc: 
+:imagesdir: ./pics/
 
 == 1. Otázka ==
 === Co je operační systém. 
@@ -311,22 +312,212 @@ iOS:
 ==== Windows 10
 
 === Souborové systémy ve Windows, přehled, vlastnosti
+Řada systémů Windows NT používá souborové systémy FAT, NTFS, exFAT, Live File System a ReFS (poslední z nich je podporován až Windows Server 2012 R2, ale Windows z nich nemůže nabootovat). Windows používá u každého souborového systému pro označení jeho kořene další písmeno abecedy. Například cesta C:\Windows představuje adresář Windows na disku pojmenovaném C. Označení C: je nejčastěji používáno jako označení primárního oddílu, na kterém bývá operační systém nejčastěji nainstalován.
 
-=== Prvky ochrany souborů a adresářů ve Windows.
+==== FAT
+Poměrně starý systém - prvně použit u MS DOSu
+
+* Nepoužívá žurnálování
+* Používá se na paměťových kartách a flash discích.
+* Používá se tabulka FAT (File Allocation Table) - informace kde je co uložené.
+* Stromová struktura
+* Maximálně 255 položek v kořenovém adresáři.
+* FAT N (FAT 12, FAT 16, FAT 32) - umožňuje adresovat maximálně 2^N clusteru.
+* Dříve 8+3 jméno souboru + přípona, dnes rozšíření VFAT.
+* Ve Windows maximálně 32 GB oddíl.
+* FAT32 naopak minimálně 512 MB.
+* Maximální velikost souboru 4 GB.
+
+==== NTFS
+* Prvně u Windows NT.
+* Neumožnuje používat male disky (diskety) - minimální velikost 4 GB
+* Možnost nastavit práva
+* Možnost indexovat soubory
+* Názvy v Unicode
+* Dynamické přemapování vadných sektoru.
+* Šifrovaní a komprese.
+* Pevné odkazy – funkční i po přesunu odkazovaného souboru.
+* Řídké soubory – lepší uložení souboru, které mají velké části vyplněné 0
+
+=== Prvky ochrany souborů a adresářů ve Windows
+* Podobně jako v unixu se dají jednotlivým souborům nastavit oprávnění
+* Windows nabízejí dvě možnosti šifrování, pomocí funkce Encrypted File System (EFS) nebo nástroje BitLocker Drive Encryption
 
 == 4. Otázka
 === Správa paměti 
+
+_Fragmentace je v informatice stav, kdy jsou data na datovém médiu uložena nesouvisle po částech._
+
 === Metoda správa jedné souvislé oblasti
+* Technické vybavení
+** mezní registr OS (ochrana paměti)
+* Výhody:
+** jednoduchost
+** možnost pracovat i s malou pamětí
+* Nevyhody:
+** není využita celá paměť
+** je-li uloha čekající, není využita paměť ani procesor
+** ulohu nelze vykonat, požaduje-li větší paměť než je k dispozici
+
 === Metoda správa paměti pomocí sekcí
+* Paměť se dělí na samostatné sekce, každá obsahuje paměťové sekce jedné úlohy
+* Sledování stavu každé sekce - používá se, nepoužívá se, rozsah
+** Plánovač úloh
+** Přidělení paměti
+** Uvolnění paměti
+* Ochrana paměti (mezní registry)
+* Metody
+** Statické přidělování - přidělý vždy stejný blok
+** Dynamické přidělování - dle potřeby úlohy
+* Výhody
+** multiprogramování
+** není nutné speciální technické řešení 
+** jednoduchá implementace
+* Nevýhody
+** fragmentace paměti
+*** vnitřní
+*** vnější
+** časté změny stavových registrů
+** není únosné, aby OS kontroloval registry při každém zápisu do paměti
+
+Vnitřní fragmentace:
+
+image::fragvnit.png[Vnitřní fragmentace]
+
+Vnější fragmentace:
+
+image::fragvnej.png[Vnější fragmentace]
 
 == 5. Otázka
-=== Správa paměti 
-=== Metoda stránkování 
+=== Správa paměti
+
+_Fragmentace je v informatice stav, kdy jsou data na datovém médiu uložena nesouvisle po částech._
+
+=== Metoda stránkování
+* Adresový prostor každé úlohy se rozdělí na stejně velké sekce – stránky. Na stejně velké díly (bloky) se rozdělí operační paměť. Pak se mohou snadněji stránky přesouvat mezi bloky. 
+* Bloky se stránkami jedné úlohy na sebe nemusí navazovat
+* Každá stránka má registr (tabulky stránek)
+* Moc velké stránky = fragmentace
+* Moc malé stránky = moc registrů (náročné)
+* Funkce modulů
+** Sledování stavu - tabulka stránek pro každou úlohu
+** Tabulka bloků - volný nebo užitý
+** Plánovač úloh
+** Přidělení a uvolňování bloků
+
+Představa stránkování paměti:
+
+image::strpampred.png[Představa stránkování paměti]
+
+* Výhody:
+** Odstranění fragmentace
+** Větší počet úloh
+
+* Nevýhody
+** Náročné řešení
+** Snížení rychlosti
+** Tabulky zabírají paměť a snižují rychlost
+** Vnitřní fragmentace - i nma malou úlohu velká stránka (stránky mají pevnou velikost)
+** Omezeno fyzickým rozsahem paměti
+
 === Metoda stránkování na žádost
 
+Virtuální paměť 
+
+** Celá úloha se neumístí do operačního paměti
+** Součet všech adresových prostor může překročit kapacitu paměti
+* V paměti je pouze právě prováděná část úlohy
+* Problém pokud program odkazuje na právě nezavedenou část úlohy
+* Je nutná strategie rozhodování co má být v paměti zavedeno
+* Tabulka stránek se rozšíří o stavový bit, určující zda je stránka zavedena
+* Problém, není-li místo pro další stránku pak se musí nějaká odstranit (do záložní paměti). Může se stát, že tato je vzápětí požadována
+
+Představa virtuální paměti:
+
+image::strpredvirpam.png[Představa virtuální paměti]
+
+Funkce modulu
+
+* Sledování stavu paměti 
+** Tabulky stránek (každá úloha)
+** Bloků (jedna v systému)
+** Tabulka souborů (pro každý adresový prostor úlohy) v záložní paměti 
+* Rozhodování o přidělení paměti
+* Přidělování paměti
+* Uvolňování paměti
+
+Algoritmy výměny
+
+* FIFO (first in first out)
+* LRU (least recently used)
+* LFU (lease frequently used)
+* NUR (not used recently) 
+** Stránka má "used" bit, který pravidelně nuluje, pokud je třeba uvolnit z paměti vybere stránku, která má used bit 0
+
+Výhody
+
+* Odtranění fragmentace
+* Není omezeno fyzickým rozsahem paměti
+* Efektivní využití
+* Multiprograming
+
+Nevýhody
+
+* Nákladnost
+* Vnitřní fragmentace
+* Nutnost ošetřit zahlcení systému
+ 
 == 6. Otázka
 === Procesy
+Proces je základní jednotka práce moderního OS se sdílením času.
+
+* Současně běží více procesů
+** Procesy OS
+** Procesy aplikací
+* OS střídavě obsluhuje procesy
+* Program není proces, ale proces se vytvoří po spuštění programu
+
+==== Struktura procesu
+Proces obsahuje
+* Ukazatel programu
+* Zásobník 
+** Dočasná data (parametry podprogramů, návratové adresy, dočasné proměné)
+** Data pro globální proměné
+* Obsah registrů procesoru
+
+* Každý proces je reprezentován záznamem, který se jmenuje process control block (PCB), který obsahuje informace o procesu
+
+* Struktura PCB
+** Proces state
+** Program counter (adresa následující insstrukce)
+** Registry procesoru
+** Informace plánování
+** Memory management
+** Accounting information (časový limit, číslo procesu)
+** I/O status (seznam I/O přidělených pro tento proces, seznam otevřených souborů)
+
 === Životní cyklus procesu
+
+Životní cyklus Pech:
+
+image::procesStavDiagram.png[Proces stav diagram Pech]
+
+Životní cyklus přednáška:
+
+image::procesStavDiagramPred.png[Proces stav diagram přednáška]
+
+==== Vytvoření procesu
+* Proces vznikne spuštěním aplikace
+* Volání jádra fork
+* Proces může vytvořit nový proces
+** Parent proces
+** Child proces
+* Dvě možnosti existence parent a child procesu
+** Parent běží současně s child procesem
+** Parent čeká na ukončení child procesu
+* Dvě možnosti vzhledem k adresovému prostoru
+** Child je duplikátem parent procesu
+** Child má vlastní program a ten je zaveden do paměti
 
 == 7. Otázka
 === Multitasking a jeho druhy
