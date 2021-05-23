@@ -3,6 +3,7 @@ Zkouškové otázky z předmětu Operační systémy
 :toc: 
 :imagesdir: ./pics/
 
+
 == 1. Otázka ==
 === Co je operační systém. 
 Operační systém jsou programové
@@ -54,7 +55,28 @@ převezmou řízení počítače
 ** Univerzální - různé typy úloh
 
 ===  Vlastnosti operačních systémů. 
-TODO
+==== Multitasking
+* Umožňuje souběžně pracovat ve více úlohách
+* Lze spustit více programů najednou nemusí se neustále jednotlivé aplikace ukončovat a startovat
+* Rozlišujeme:
+** kooperativní m. - přidělují prováděným procesům procesor na takovou dobu, na jakou ji potřebují ostatní programy mohou zůstat bez odezvy
+** preemptivní m. - vysoce výkonný, systém rozděluje, komu přidělí jakou dobu procesu mají stejnou dobu, lze nastavovat priority 
+
+==== Souborový systém
+* Algoritmus pro zapisování dat na disk
+* FAT, FAT32, Ext, NTFS, BTRFS
+* Některé systémy mohou číst i odlišné, ale na vždy a všechny 
+
+==== Bootování
+* Zavádění operačního systému
+* Zavádí se z pevného disku, CD nebo Flash
+
+==== Plug & play
+* Umožňují automaticky detekovat nový hardware přidaný do počítače a také instalovat
+* Pokud není, nutno ručně
+
+==== Uživatelské rozhraní
+* Prostředí, ve kterém se uživatel pohybuje 
 
 ===  Real time OS.
 * Zvláštní kategorie
@@ -147,6 +169,8 @@ Linux je možno instalovat z CD (DVD), USB disku nebo po síti (FTP, lokální s
 * I v druhém případě potřebujeme instalační USB disk nebo CD ze kterého se zavede základní systém
 * Je možná i síťová instalace s nabootováním přes síť, ale musí to zvládat síťová karta
 * V případě překládané instalace se zavede základní systém a překladač z CD nebo USB disku, pak se z internetu stáhnou zdrojové kódy a celý systém se přeloží
+
+Jádro Linuxu je založené na MINIXu
 
 === MacOS
 * Vlastní operační systém
@@ -611,21 +635,284 @@ Multitasking je schopnost OS provádět několik procesů současně. Jádro ryc
 
 == 8. Otázka
 === Synchronizace procesů
+* Mluvíme o procesech, ale v praxi probíhá synchronizace na úrovni vláken – slovo proces pak můžeme  nahradit slovem vlákno.
+* Je nutné synchronizovat zejména paralelní procesy.
+* Časově závislá chyba – vzniká podle pořadí přístupu procesu k proměnné.
+
 === Kritická sekce a její řešení
+* Kritická sekce je taková část kódu, kterou nelze sdílet. Je třeba zajistit následující:
+** Vzájemné vyloučení - do kritické sekce smí jen jeden proces
+** Dostupnost kritické sekce - proces musí mít možnost se k ní v přiměřeném časovém kvantu dostat
+** Proces je v kritické sekci konečnou dobu
+* Řešené problémy:
+** Uváznutí - deadlock
+** Blokování - proces do kritické sekce nemůže i když je volná
+** Stárnutí - příliš dlouhé čekání
+
+==== Algoritmy pro přístup do kritické sekce
+* Petersonův (zdvořilý) algoritmus
+** Tento algoritmus lze použít pro dva procesy. Pokud první proces se chystá vstoupit do kritické sekce, pak označí zájem do ní vstoupit a dá přednost druhému procesu. Pak čeká až nastane jedna z dvou následujících možností:
+*** Druhý proces odpoví, že nemá zájem do kritické sekce vstoupit a vrátí mu přednost
+*** Druhý proces ukončil činnost v kritické sekci.
+* Bakery (pekařův) algoritmus – FIFO
+** Připomíná řešení pořadí na poště nebo úřadech. Před vstupem do kritické sekce získá proces lístek s číslem jeho pořadí. Pokud získají dva procesy stejné číslo, pak rozhoduje nižší PID. Kdo má aktuálně nejnižší číslo smí vstoupit do kritické sekce, jakmile se uvolní. Přidělovaná přístupová čísla se zvyšují o jedničku a po vyčerpání datového typu pokračují od jedné.
+* Hardwarové řešení – funkce TestAndSet
+** Procesory i386 a novější obsahují implementaci funkci TestAndSet. Jedná se o tzv. atomickou funkci – smí ji vždy vykonávat pouze jeden proces. Na platformě Intel se funkce nazývá Lock Bts. Pracuje se sdílenou Booleovskou proměnnou, která ukazuje, zda je volný vstup do kritické sekce. Při každém volání funkce, je vstup do kritické sekce nejprve uzamčen bez ohledu na návratovou
+hodnotu. Pokud funkce vrátí hodnotu volno, nastaví se obsazeno, proces vstoupí do kritické sekce a
+po skončení opět nastaví na volno. Vrátí-li se obsazeno, proces čeká ve smyčce. Tomu se říká
+aktivní čekání. Toto čekání poměrně hodně zatěžuje procesor, proto není vhodné používat tuto
+metodu, tam kde se očekává dlouhé čekání.
+* Semafor – celočíselná proměnná, udávající přístupnost kritické sekce
+** Je vlastně celočíselná proměnná P, pro kterou jsou definovány dvě atomické operace:
+*** Lock (P) – snížení hodnoty semaforu P o 1
+*** Unlock (P) – zvýšení hodnoty semaforu P o 1
+** Pokud semafor P hlídá kritickou sekci, pak význam jeho hodnoty je následující:
+*** kladná hodnota – počet procesů, které do sekce mohou vstoupit
+*** nulová hodnota – sekce obsazena, ale žádný proces nečeká
+*** záporná hodnota – sekce obsazena, absolutní hodnota proměnné udává aktuální počet procesů čekajících na vstup do kritické sekce
+** Čekající procesy jsou pozastaveny. Je-li sekce volná, proces do ní vstoupí a zavolá funkci lock.
+Není-li volná zavolá funkci lock a přesune se do fronty čekajících procesů. Při východu z kritické
+sekce zavolá proces funkci unlock, a pokud čekají procesy ve frontě je první aktivován.
+Samy funkce lock a unlock jsou atomické – musí se řešit jako kritické sekce, aby hodnota proměnné
+P byla určena jednoznačně. Nelze zde použít semafory, proto se použije obvykle hardwarové
+řešení, neboť v tomto případě je pobyt v kritické sekci krátký (změna proměnné) a tak smyčky
+netrvají dlouho. Binární semafor je takový semafor, který má jen dva stavy – stůj a volno.
+* Monitor – outsourcing
+Je abstraktní datový typ obsahující sdílená data, operace s nimi prováděné a podmínky. Požadavky
+se řadí do fronty a monitor je postupně řeší, čímž je zajištěno vzájemné vyloučení.
+Můžeme si jej představit jako outsourcování požadavků procesů na přístup do kritické sekce do
+monitoru. Tím, že monitor má kompletní přehled o stavu kritické sekce a počtu procesů, které se
+nacházejí jak uvnitř sekce, tak do ní chtějí vstoupit, může zajistit její bezproblémovou obsluhu.
+
+Monitor:
+
+image::monitor.png[Monitor]
 
 == 9. Otázka
 === Synchronizační problémy
+==== Producent a konzument – pásová výroba
+Obvykle se řeší pro dva procesy, ale lze jej zobecnit i pro více. Jeden z nich pouze generuje data
+(producent) a druhý je naopak pouze zpracovává (konzument). Data si vzájemně posílají přes
+vyrovnávací paměť o N položkách.
+Je-li paměť plná musí čekat producent, naopak pokud je paměť prázdná musí čekat konzument.
+Tento problém se obvykle řeší pomocí semaforů. Tento problém si můžeme představit v praxi jako
+pásovou výrobu.
+
+==== Model a obraz – letadlo
+Jedná se o podobný problém jako v předchozí situaci. V tomto případě nás zajímá vždy aktuální
+stav některé proměnné. Můžeme si jej představit jako procesy obsluhující letadlo za letu. Jedny
+procesy zjišťují aktuální údaje (výška, rychlost, spotřeba paliva…), jiné je zobrazují.
+Je nutné mít vždy co nejpřesnější údaje, na druhou stranu je zase nesmíme zjišťovat extrémně často,
+neboť by pak mohly ukazatele poblikávat a být nečitelné. Procesy produkující informace nám
+mohou nastavit proměnnou (např. Binární semafor), která ukazuje, že došlo ke změně a proces,
+který si informace načte, jí opět vynuluje.
+
+==== Čtenáři a písaři – internetové noviny
+Jedná se o problém přístupu ke sdíleným datům. Některé procesy data pouze modifikují (písaři),
+jiné je pouze čtou (čtenáři). Libovolný počet čtenářů smí k datům přistoupit současně, ale pokud
+přistoupí písař, nesmí přistoupit ani čtenář ani jiný písař.
+Řeší se pomocí binárních semaforů. Dokud k datům přistupují čtenáři nesmí přistoupit písař, takže
+zde hrozí zastarání dat.
+
+==== Hladoví filozofové 
+Okolo stolu sedí filozofové. Před každým je miska rýže a jedna hůlka. Filozofové přemýšlejí
+o stejné věci a všichni najednou dostanou hlad. Každý vezme jednu hůlku, čímž vznikne situace,
+kdy každý filozof drží jednu hůlku (kterou se nenají), další hůlku nemůže dostat, ale odmítá se
+vzdát své. Takové situaci říkáme deadlock.
+
+Filosofové:
+
+image::filosofove.png[Filosovofé]
+
+==== Deadlock
+Otázka 10
 
 == 10. Otázka
 === Deadlock a jeho řešení
+V multiprogramovém prostředí si mohou různé prostředky konkurovat v získání
+konečného počtu zdrojů. Proces požaduje zdroje, a jestliže tyto zdroje nejsou v danou chvíli
+dostupné, je proces přesunut do stavu čekající. Může se stát, že čekající proces svůj stav již nikdy
+nezmění, protože zdroje, na které čeká, drží jiné čekající procesy. Tato situace je nazývána deadlock
+
+Klasickým příkladem je problém hladových filozofů. Jiný typický případ z prostředí výpočetní techniky, je situace, kdy dva procesy drží každý po jednom souboru otevřeném pro zápis a potřebují zapsat do souboru, který má otevřený konkurenční proces. Samy však nejsou ochotné uvolnit svůj soubor dříve, než zapíšou do konkurenčního. Ještě jiný příklad deadlocku, opět z dopravy: křižovatka dvou cest nerozlišená dopravními značkami, kde přijede současně po každé cestě automobil, který chce jet rovně.
+
+Dopravní deadlock:
+
+image::dopdeadlock.png[Dopravní deadlock]
+
+==== Přidělování zdrojů procesům
+Systém obsahuje konečný počet zdrojů, například paměť, procesor (procesory, jádra), vstupně
+výstupní zařízení. Některá jsou nesdílitelná (nemohou je využívat dva procesy současně), například tiskárna, soubor pro zápis apod. Proces musí o zdroj požádat před jeho užitím a po jeho použití jej musí opět uvolnit. Proces současně nesmí požadovat více zdrojů, než jsou možnosti systému.
+Deadlock je čekání na událost, která nemůže nastat.
+
+==== Podmínky pro vznik deadlocku
+* Vzájemná jedinečnost – v systému existuje nesdílitelný zdroj – může jej v daném okamžiku mít jen jeden proces
+* Drží a čeká – existuje proces, který drží nesdílitelný zdroj a čeká na přidělení jiného nesdílitelného zdroje
+* Nepreemptivnost – zdroj může být uvolněn pouze po ukončení úlohy
+* Kruhové čekání – procesy čekající vzájemně na zdroje
+Tyto čtyři podmínky musí nastat současně
+
+==== Metody řešení deadlocku
+Existují čtyři metody řešení deadlocku:
+
+* Prevence deadlocku
+** Řeší se zrušením některé podmínky deadlocku
+** Nepoužívat zámky u prostředků umožňujících sdílený přístup
+** Proces může žádat o další prostředky až tehdy když všechny své uvolnil
+** Pokud proces požádá o nedostupný prostředek je pozastaven, jsou mu všechny prostředky odebrány a čeká se, až může všechny prostředky obdržet
+** Prostředky mají stanovené pořadí a lze je získat pouze v tomto pořadí
+* Vyhýbání se deadlocku
+* Každý proces před začátkem oznámí kolik bude potřebovat prostředků. Nelze jej spustit, pokud existuje možnost, že mu prostředky nebudou moci být zajištěny.
+* Užívá se tzv. bankéřův algoritmus – bankéř nemůže půjčit prostředky, pokud nemůže zajistit požadavek na výběr nejvyššího vkladu.
+* Tuto metodu používají obvykle real time operační systémy.
+* Řešení deadlocku
+** Vychází z předpokladu, že je deadlock nepravděpodobný. Systém se snaží cyklicky detekovat deadlock a řešit ho. Možné způsoby jsou:
+*** Ukončení procesu (restart procesu)
+*** Přidání zdroje – obvykle nemožné
+*** Odebrání zdroje nějakému procesu
+* Ponechání řešení na lidské obsluze
+** Typickým příznakem deadlocku je zaplněná paměť a současně málo zatížený procesor. Nejlepší způsob řešení v takovém případě je postupné ukončování procesů a sledování, zda se systém rozběhne.
+** Nejjednodušší řešení je samozřejmě restart systému a opětovné spuštění aplikací. Může však dojít ke ztrátě dat a je pravděpodobné, že při spuštění stejných aplikací může opět nastat deadlock.
+** Jedná se vlastně o předchozí metodu, ale namísto operačního systému je do role supervizora
+dosazen uživatel.
 
 == 11. Otázka
 === Struktura odkládacího zařízení, soubor, adresář, plánování disku.
+Odkládací zařízení (jinak zvané paměťové médium nebo úložiště) je periferní zařízení, na které se ukládají data.
+Jedná se o velmi důležitou část - i samotný operační systém je na paměťovém médiu
+Média dělíme na:
+
+* Pevná - harddisk, SSD
+* Výměnná - CD, DVD, flash disk
+
+==== Adresářová struktura
+* Soubor
+** Data se nalézají v souborech. Soubor můžeme pokládat za základní jednotku ukládání dat.
+* Adresář (Složka)
+** Soubory se slučuji do adresářů. Adresáře tvoří strukturu, obvykle obsahuji další adresáře a soubory. ** Adresář,který obsahuje vše co se na disku nachází se nazývá kořenový (root).
+* Dělení adresářových struktur
+** Jednoúrovňová - existuje pouze adresář root a vše je v něm (CP/M)
+** Dvouúrovňová - v rootu jsou adresáře, ale ty už nemohou obsahovat další adresáře jen soubory (RSX)
+** Stromová - v každém adresáři mohou byt další soubory i adresáře. Připomíná to strom s kořenem (root). (FAT)
+** Acyklická - soubory a adresáře mohou být ve více adresářích - nesmí tam být ale cykly (dva adresáře se nemohou odkazovat vzájemně na sebe). Snadný přístup k témuž souboru z více adresářů (linky).(NTFS, Extended)
+** Cyklická - může obsahovat cykly
+
+==== Soubor
+Nad souborem jsou definovány následující operace, které zajišťuje operační systém:
+
+* Vytvoření
+* Čtení
+* Zápis
+* Změna pozice v souboru (vyhledání místa)
+* Smazání
+
+Rozlišujeme různé druhy souborů:
+
+* Standardní - dokumenty, programy.
+* Adresáře - z pohledu většiny operačních systému je adresář zvláštním typem souboru.
+* Simulované - přístup k I/O zařízením.
+* Odkládací soubory -virtuální paměť.
+
+Fragmentace souborů: 
+
+* vnější – soubory jsou rozdělené po celém paměťovém médiu
+* vnitřní – velký počet malých souborů – volná místa v clusterech
+
+Soubory dále dělíme dle přístupu na médiu:
+
+* Přímý (CD, disk) – kterýkoliv soubor (nebo místo v souboru) je kdykoliv k dispozici
+* Sekvenční (magnetická páska) – Pokud chceme konkrétní místo musí se projet vše od začátku (nebo aktuálního místa) až po místo požadované. Jako magnetofonová páska.
+* Indexový (magnetická páska s přeskakováním) – Lze adresovat některá místa. Jako magnetofonová páska, která umí najít začátky písní
+
+==== Plánování disku
+Je činnost, která nám říká, jakým způsobem se budou vyřizovat požadavky na čtení a zápis u disku. Je třeba zvolit vhodný způsob, abychom zbytečně nečekali a na druhou stranu disk nezatěžovali zbytečnými posuny hlavy.
+
+* Plánování FCFS (First-Come First-Served) – požadavky jsou vyřizovány v pořadí v jakém došly. Výhoda – poměrně rychlý systém, nevýhoda – velké přesuny hlavy a z toho plynoucí značné namáhání pohyblivých částí.
+* Plánování SSTF (Shortest-Seek-Time-First) – nejprve vyřízen ten požadavek který vyvolá nejmenší posun hlavy. Nevýhody – Hlava se může pohybovat tam a zpět. Požadavky na vzdálenější stopy mohou teoreticky čekat nekonečně dlouho.
+* SCAN plánování – hlava projíždí disk tam a zpět z jednoho konce na druhý a cestou vyřizuje
+požadavky. Elevator algoritmus (podobá se výtahu).
+* C-SCAN – hlava se po dojetí na konec vrátí na začátek jako by začátek navazoval na konec. Ještě je možné vylepšit tak, že pokud mezi hlavou a krajem disku není žádný požadavek, hlava se začne vracet zpět.
+
 
 == 12. Otázka
 === Souborové systémy
-=== FAT
-=== NTFS
-=== UNIXové souborové systémy
+Vlastnosti souborových systémů:
 
+* Souborové systémy s okamžitým zápisem – v daném okamžiku pouze jedna operace a další musí čekat. Data se nemohou ztratit, ale je to pomalejší (FAT)
+* Opatrný zápis – bezpečná posloupnost operací, jako u databází.
+* Opožděný zápis – cache paměť. Rychlé, ale při havárii se data, která jsou dosud v cache, ale nejsou ještě zapsána, mohou ztratit.
+* Žurnálovací souborové systémy – uchovávají se informace o provedených operacích. Při
+výpadku je možné data obnovit (NTFS, většina Linuxových FS)
+
+=== FAT
+* První široce rozšířený file systém
+* Dnes se používá na paměťových kartách a flash pamětích
+* Velmi rychlí
+* Nepoužívá žurnálování
+* Používá se tabulka FAT (File Allocation Table) - informace kde je co uložené.
+* Stromová struktura
+* Maximálně 255 položek v kořenovém adresáři.
+* FAT N (FAT 12, FAT 16, FAT 32) - umožňuje adresovat maximálně 2^N clusteru.
+* Dříve 8+3 jméno souboru + přípona, dnes rozšíření VFAT.
+* Ve Windows maximálně 32 GB oddíl.
+* FAT32 naopak minimálně 512 MB.
+* Maximální velikost souboru 4 GB.
+
+=== NTFS
+Žurnálovací souborový systém vyvinutý Microsoftem. Podobně jako v UNIXu je vše soubor. Lze indexovat dle typu souboru, což umožňuje rychlejší vyhledávání. Lze nastavovat práva pro uživatele nebo pro skupinu uživatelů.
+
+* Prvně u Windows NT.
+* Neumožnuje používat male disky (diskety) - minimální
+* velikost 4 GB
+* Možnost nastavit práva
+* Možnost indexovat soubory
+* Názvy v Unicode
+* Dynamické přemapování vadných sektoru.
+* Šifrovaní a komprese.
+* Pevné odkazy – funkční i po přesunu odkazovaného souboru.
+* Řídké soubory – lepší uložení souboru, které mají velké části vyplněné 0
+
+Srovnání FAT a NTFS:
+
+image::fatxntfs.png[Srovnání FAT a NTFS]
+
+=== UNIXové souborové systémy
+==== XFS
+Žurnálovací souborový systém, který je 64 bitový, a proto je velikost souboru i souborového
+systému z našeho pohledu téměř neomezená. Je možné rezervovat přístupové pásmo pro přístup
+k souborům, to je výhoda u multimédií.
+Jsou žurnálována metadata ale ne samotná data – rychlejší ale méně bezpečný než ext3.
+
+==== ZFS
+Zettabyte File System. 128 bitový souborový systém vyvinutý původně firmou Sun pro operační
+systém Solaris, nyní je používán i v BSD a připravují se ovladače pro Linux. Má v sobě přímo
+integrován manažér logických oddílů. Může uchovávat až 1 ZB dat (1 ZB = 1 bilión TB). Umí
+automaticky opravovat chyby.
+
+==== BTRFS 
+Souborový systém podobny ZFS, založený na B stromech.
+
+==== APFS
+Apple File System (Starší HFS+) – pro MacOS
+
+
+==== Extended (Ext)
+* Unixové systémy
+* Verze Ext (již se nepoužívá), Ext2, Ext3 a Ext4
+* Bloky mají velikost 512, 1024, 2048 nebo 4096 B.
+* První blok je boot blok.
+* Další bloky jsou rozděleny do skupin, každá obsahuje superblok s informacemi o celém disku - při poškození jednoho se použije jiny.
+* Informace o souborech jsou v tzv. i-node (i-uzel).
+* Volné místo se eviduje v řetězovém seznamu.
+* Moznost použít odkazy (linky)
+* Lze použít odkazy (links), které mohou být následujícího typu:
+** Pevný odkaz (hard link) více odkazů na stejný soubor, žádný není hlavní. Soubor smí být smazán, když na něj již nevede žádný takovýto odkaz. Nesmí vzniknout cykly. Nesmí odkazovat na sebe sama a nesmí vést na jiný disk
+** Symbolické odkazy (soft link) – odkazují na umístění souborů, odpadají omezení u pevných odkazů
+* Název souboru může mít až 255 znaků. 
+* Od verze ext3 se jedná o žurnálovací systém. 
+* Systém ext2 je naproti tomu významně rychlejší a používá se tam, kde záleží na rychlosti a data se často nemění (disk ze kterého se zavádí systém).
+
+Tabulka vlastností verzí:
+
+image::ext.png[Tabulka vlastností verzí]
 
