@@ -1577,46 +1577,48 @@ převezmou řízení počítače</p>
 <div class="sectionbody">
 <div class="sect2 data-line-347">
 <h3 id="_správa_paměti">Správa paměti</h3>
-
+<div class="paragraph data-line-349">
+<p><em>Fragmentace je v informatice stav, kdy jsou data na datovém médiu uložena nesouvisle po částech.</em></p>
 </div>
-<div class="sect2 data-line-348">
+</div>
+<div class="sect2 data-line-351">
 <h3 id="_metoda_správa_jedné_souvislé_oblasti">Metoda správa jedné souvislé oblasti</h3>
-<div class="ulist data-line-349">
+<div class="ulist data-line-352">
 <ul>
-<li class="data-line-349">
+<li class="data-line-352">
 <p>Technické vybavení</p>
-<div class="ulist data-line-350">
+<div class="ulist data-line-353">
 <ul>
-<li class="data-line-350">
+<li class="data-line-353">
 <p>mezní registr OS (ochrana paměti)</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-351">
+<li class="data-line-354">
 <p>Výhody:</p>
-<div class="ulist data-line-352">
+<div class="ulist data-line-355">
 <ul>
-<li class="data-line-352">
+<li class="data-line-355">
 <p>jednoduchost</p>
 </li>
-<li class="data-line-353">
+<li class="data-line-356">
 <p>možnost pracovat i s malou pamětí</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-354">
+<li class="data-line-357">
 <p>Nevyhody:</p>
-<div class="ulist data-line-355">
+<div class="ulist data-line-358">
 <ul>
-<li class="data-line-355">
+<li class="data-line-358">
 <p>není využita celá paměť</p>
 </li>
-<li class="data-line-356">
+<li class="data-line-359">
 <p>je-li uloha čekající, není využita paměť ani procesor</p>
 </li>
-<li class="data-line-357">
+<li class="data-line-360">
 <p>ulohu nelze vykonat, požaduje-li větší paměť než je k dispozici</p>
 </li>
 </ul>
@@ -1625,82 +1627,82 @@ převezmou řízení počítače</p>
 </ul>
 </div>
 </div>
-<div class="sect2 data-line-359">
+<div class="sect2 data-line-362">
 <h3 id="_metoda_správa_paměti_pomocí_sekcí">Metoda správa paměti pomocí sekcí</h3>
-<div class="ulist data-line-360">
+<div class="ulist data-line-363">
 <ul>
-<li class="data-line-360">
+<li class="data-line-363">
 <p>Paměť se dělí na samostatné sekce, každá obsahuje paměťové sekce jedné úlohy</p>
 </li>
-<li class="data-line-361">
+<li class="data-line-364">
 <p>Sledování stavu každé sekce - používá se, nepoužívá se, rozsah</p>
-<div class="ulist data-line-362">
+<div class="ulist data-line-365">
 <ul>
-<li class="data-line-362">
+<li class="data-line-365">
 <p>Plánovač úloh</p>
 </li>
-<li class="data-line-363">
+<li class="data-line-366">
 <p>Přidělení paměti</p>
 </li>
-<li class="data-line-364">
+<li class="data-line-367">
 <p>Uvolnění paměti</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-365">
+<li class="data-line-368">
 <p>Ochrana paměti (mezní registry)</p>
 </li>
-<li class="data-line-366">
+<li class="data-line-369">
 <p>Metody</p>
-<div class="ulist data-line-367">
+<div class="ulist data-line-370">
 <ul>
-<li class="data-line-367">
+<li class="data-line-370">
 <p>Statické přidělování - přidělý vždy stejný blok</p>
 </li>
-<li class="data-line-368">
+<li class="data-line-371">
 <p>Dynamické přidělování - dle potřeby úlohy</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-369">
+<li class="data-line-372">
 <p>Výhody</p>
-<div class="ulist data-line-370">
+<div class="ulist data-line-373">
 <ul>
-<li class="data-line-370">
+<li class="data-line-373">
 <p>multiprogramování</p>
 </li>
-<li class="data-line-371">
+<li class="data-line-374">
 <p>není nutné speciální technické řešení</p>
 </li>
-<li class="data-line-372">
+<li class="data-line-375">
 <p>jednoduchá implementace</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-373">
+<li class="data-line-376">
 <p>Nevýhody</p>
-<div class="ulist data-line-374">
+<div class="ulist data-line-377">
 <ul>
-<li class="data-line-374">
+<li class="data-line-377">
 <p>fragmentace paměti</p>
-<div class="ulist data-line-375">
+<div class="ulist data-line-378">
 <ul>
-<li class="data-line-375">
+<li class="data-line-378">
 <p>vnitřní</p>
 </li>
-<li class="data-line-376">
+<li class="data-line-379">
 <p>vnější</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="data-line-377">
+<li class="data-line-380">
 <p>časté změny stavových registrů</p>
 </li>
-<li class="data-line-378">
+<li class="data-line-381">
 <p>není únosné, aby OS kontroloval registry při každém zápisu do paměti</p>
 </li>
 </ul>
@@ -1708,18 +1710,18 @@ převezmou řízení počítače</p>
 </li>
 </ul>
 </div>
-<div class="paragraph data-line-380">
+<div class="paragraph data-line-383">
 <p>Vnitřní fragmentace:</p>
 </div>
-<div class="imageblock data-line-382">
+<div class="imageblock data-line-385">
 <div class="content">
 <img src="./pics/fragvnit.png" alt="Vnitřní fragmentace">
 </div>
 </div>
-<div class="paragraph data-line-384">
+<div class="paragraph data-line-387">
 <p>Vnější fragmentace:</p>
 </div>
-<div class="imageblock data-line-386">
+<div class="imageblock data-line-389">
 <div class="content">
 <img src="./pics/fragvnej.png" alt="Vnější fragmentace">
 </div>
@@ -1727,101 +1729,749 @@ převezmou řízení počítače</p>
 </div>
 </div>
 </div>
-<div class="sect1 data-line-388">
+<div class="sect1 data-line-391">
 <h2 id="_5_otázka">5. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-389">
+<div class="sect2 data-line-392">
 <h3 id="_správa_paměti_2">Správa paměti</h3>
-
+<div class="paragraph data-line-394">
+<p><em>Fragmentace je v informatice stav, kdy jsou data na datovém médiu uložena nesouvisle po částech.</em></p>
 </div>
-<div class="sect2 data-line-390">
+</div>
+<div class="sect2 data-line-396">
 <h3 id="_metoda_stránkování">Metoda stránkování</h3>
-
+<div class="ulist data-line-397">
+<ul>
+<li class="data-line-397">
+<p>Adresový prostor každé úlohy se rozdělí na stejně velké sekce – stránky. Na stejně velké díly (bloky) se rozdělí operační paměť. Pak se mohou snadněji stránky přesouvat mezi bloky.</p>
+</li>
+<li class="data-line-398">
+<p>Bloky se stránkami jedné úlohy na sebe nemusí navazovat</p>
+</li>
+<li class="data-line-399">
+<p>Každá stránka má registr (tabulky stránek)</p>
+</li>
+<li class="data-line-400">
+<p>Moc velké stránky = fragmentace</p>
+</li>
+<li class="data-line-401">
+<p>Moc malé stránky = moc registrů (náročné)</p>
+</li>
+<li class="data-line-402">
+<p>Funkce modulů</p>
+<div class="ulist data-line-403">
+<ul>
+<li class="data-line-403">
+<p>Sledování stavu - tabulka stránek pro každou úlohu</p>
+</li>
+<li class="data-line-404">
+<p>Tabulka bloků - volný nebo užitý</p>
+</li>
+<li class="data-line-405">
+<p>Plánovač úloh</p>
+</li>
+<li class="data-line-406">
+<p>Přidělení a uvolňování bloků</p>
+</li>
+</ul>
 </div>
-<div class="sect2 data-line-391">
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-408">
+<p>Představa stránkování paměti:</p>
+</div>
+<div class="imageblock data-line-410">
+<div class="content">
+<img src="./pics/strpampred.png" alt="Představa stránkování paměti">
+</div>
+</div>
+<div class="ulist data-line-412">
+<ul>
+<li class="data-line-412">
+<p>Výhody:</p>
+<div class="ulist data-line-413">
+<ul>
+<li class="data-line-413">
+<p>Odstranění fragmentace</p>
+</li>
+<li class="data-line-414">
+<p>Větší počet úloh</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-416">
+<p>Nevýhody</p>
+<div class="ulist data-line-417">
+<ul>
+<li class="data-line-417">
+<p>Náročné řešení</p>
+</li>
+<li class="data-line-418">
+<p>Snížení rychlosti</p>
+</li>
+<li class="data-line-419">
+<p>Tabulky zabírají paměť a snižují rychlost</p>
+</li>
+<li class="data-line-420">
+<p>Vnitřní fragmentace - i nma malou úlohu velká stránka (stránky mají pevnou velikost)</p>
+</li>
+<li class="data-line-421">
+<p>Omezeno fyzickým rozsahem paměti</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2 data-line-423">
 <h3 id="_metoda_stránkování_na_žádost">Metoda stránkování na žádost</h3>
-
+<div class="paragraph data-line-425">
+<p>Virtuální paměť</p>
+</div>
+<div class="ulist data-line-427">
+<ul>
+<li class="data-line-427">
+<p>Celá úloha se neumístí do operačního paměti</p>
+</li>
+<li class="data-line-428">
+<p>Součet všech adresových prostor může překročit kapacitu paměti</p>
+<div class="ulist data-line-429">
+<ul>
+<li class="data-line-429">
+<p>V paměti je pouze právě prováděná část úlohy</p>
+</li>
+<li class="data-line-430">
+<p>Problém pokud program odkazuje na právě nezavedenou část úlohy</p>
+</li>
+<li class="data-line-431">
+<p>Je nutná strategie rozhodování co má být v paměti zavedeno</p>
+</li>
+<li class="data-line-432">
+<p>Tabulka stránek se rozšíří o stavový bit, určující zda je stránka zavedena</p>
+</li>
+<li class="data-line-433">
+<p>Problém, není-li místo pro další stránku pak se musí nějaká odstranit (do záložní paměti). Může se stát, že tato je vzápětí požadována</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-435">
+<p>Představa virtuální paměti:</p>
+</div>
+<div class="imageblock data-line-437">
+<div class="content">
+<img src="./pics/strpredvirpam.png" alt="Představa virtuální paměti">
+</div>
+</div>
+<div class="paragraph data-line-439">
+<p>Funkce modulu</p>
+</div>
+<div class="ulist data-line-441">
+<ul>
+<li class="data-line-441">
+<p>Sledování stavu paměti</p>
+<div class="ulist data-line-442">
+<ul>
+<li class="data-line-442">
+<p>Tabulky stránek (každá úloha)</p>
+</li>
+<li class="data-line-443">
+<p>Bloků (jedna v systému)</p>
+</li>
+<li class="data-line-444">
+<p>Tabulka souborů (pro každý adresový prostor úlohy) v záložní paměti</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-445">
+<p>Rozhodování o přidělení paměti</p>
+</li>
+<li class="data-line-446">
+<p>Přidělování paměti</p>
+</li>
+<li class="data-line-447">
+<p>Uvolňování paměti</p>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-449">
+<p>Algoritmy výměny</p>
+</div>
+<div class="ulist data-line-451">
+<ul>
+<li class="data-line-451">
+<p>FIFO (first in first out)</p>
+</li>
+<li class="data-line-452">
+<p>LRU (least recently used)</p>
+</li>
+<li class="data-line-453">
+<p>LFU (lease frequently used)</p>
+</li>
+<li class="data-line-454">
+<p>NUR (not used recently)</p>
+<div class="ulist data-line-455">
+<ul>
+<li class="data-line-455">
+<p>Stránka má "used" bit, který pravidelně nuluje, pokud je třeba uvolnit z paměti vybere stránku, která má used bit 0</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-457">
+<p>Výhody</p>
+</div>
+<div class="ulist data-line-459">
+<ul>
+<li class="data-line-459">
+<p>Odtranění fragmentace</p>
+</li>
+<li class="data-line-460">
+<p>Není omezeno fyzickým rozsahem paměti</p>
+</li>
+<li class="data-line-461">
+<p>Efektivní využití</p>
+</li>
+<li class="data-line-462">
+<p>Multiprograming</p>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-464">
+<p>Nevýhody</p>
+</div>
+<div class="ulist data-line-466">
+<ul>
+<li class="data-line-466">
+<p>Nákladnost</p>
+</li>
+<li class="data-line-467">
+<p>Vnitřní fragmentace</p>
+</li>
+<li class="data-line-468">
+<p>Nutnost ošetřit zahlcení systému</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="sect1 data-line-393">
+</div>
+<div class="sect1 data-line-470">
 <h2 id="_6_otázka">6. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-394">
+<div class="sect2 data-line-471">
 <h3 id="_procesy">Procesy</h3>
-
+<div class="paragraph data-line-472">
+<p>Proces je základní jednotka práce moderního OS se sdílením času.</p>
 </div>
-<div class="sect2 data-line-395">
+<div class="ulist data-line-474">
+<ul>
+<li class="data-line-474">
+<p>Současně běží více procesů</p>
+<div class="ulist data-line-475">
+<ul>
+<li class="data-line-475">
+<p>Procesy OS</p>
+</li>
+<li class="data-line-476">
+<p>Procesy aplikací</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-477">
+<p>OS střídavě obsluhuje procesy</p>
+</li>
+<li class="data-line-478">
+<p>Program není proces, ale proces se vytvoří po spuštění programu</p>
+</li>
+</ul>
+</div>
+<div class="sect3 data-line-480">
+<h4 id="_struktura_procesu">Struktura procesu</h4>
+<div class="paragraph data-line-481">
+<p>Proces obsahuje
+* Ukazatel programu
+* Zásobník
+<strong> Dočasná data (parametry podprogramů, návratové adresy, dočasné proměné)
+</strong> Data pro globální proměné
+* Obsah registrů procesoru</p>
+</div>
+<div class="ulist data-line-488">
+<ul>
+<li class="data-line-488">
+<p>Každý proces je reprezentován záznamem, který se jmenuje process control block (PCB), který obsahuje informace o procesu</p>
+</li>
+<li class="data-line-490">
+<p>Struktura PCB</p>
+<div class="ulist data-line-491">
+<ul>
+<li class="data-line-491">
+<p>Proces state</p>
+</li>
+<li class="data-line-492">
+<p>Program counter (adresa následující insstrukce)</p>
+</li>
+<li class="data-line-493">
+<p>Registry procesoru</p>
+</li>
+<li class="data-line-494">
+<p>Informace plánování</p>
+</li>
+<li class="data-line-495">
+<p>Memory management</p>
+</li>
+<li class="data-line-496">
+<p>Accounting information (časový limit, číslo procesu)</p>
+</li>
+<li class="data-line-497">
+<p>I/O status (seznam I/O přidělených pro tento proces, seznam otevřených souborů)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2 data-line-499">
 <h3 id="_životní_cyklus_procesu">Životní cyklus procesu</h3>
-
+<div class="paragraph data-line-501">
+<p>Životní cyklus Pech:</p>
+</div>
+<div class="imageblock data-line-503">
+<div class="content">
+<img src="./pics/procesStavDiagram.png" alt="Proces stav diagram Pech">
+</div>
+</div>
+<div class="paragraph data-line-505">
+<p>Životní cyklus přednáška:</p>
+</div>
+<div class="imageblock data-line-507">
+<div class="content">
+<img src="./pics/procesStavDiagramPred.png" alt="Proces stav diagram přednáška">
+</div>
+</div>
+<div class="paragraph data-line-509">
+<p>Popis stavů
+* Nový proces
+* Probíhající (právě je vykonáván)
+* Čekající (čeká na událost)
+* Připravený (čeká na procesor)
+* Ukončený</p>
+</div>
+<div class="sect3 data-line-516">
+<h4 id="_vytvoření_procesu">Vytvoření procesu</h4>
+<div class="ulist data-line-517">
+<ul>
+<li class="data-line-517">
+<p>Proces vznikne spuštěním aplikace</p>
+<div class="ulist data-line-518">
+<ul>
+<li class="data-line-518">
+<p>Volání jádra fork</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-519">
+<p>Proces může vytvořit nový proces</p>
+<div class="ulist data-line-520">
+<ul>
+<li class="data-line-520">
+<p>Parent proces</p>
+</li>
+<li class="data-line-521">
+<p>Child proces</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-522">
+<p>Dvě možnosti existence parent a child procesu</p>
+<div class="ulist data-line-523">
+<ul>
+<li class="data-line-523">
+<p>Parent běží současně s child procesem</p>
+</li>
+<li class="data-line-524">
+<p>Parent čeká na ukončení child procesu</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-525">
+<p>Dvě možnosti vzhledem k adresovému prostoru</p>
+<div class="ulist data-line-526">
+<ul>
+<li class="data-line-526">
+<p>Child je duplikátem parent procesu</p>
+</li>
+<li class="data-line-527">
+<p>Child má vlastní program a ten je zaveden do paměti</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-529">
+<h4 id="_ukončení_procesu">Ukončení procesu</h4>
+<div class="ulist data-line-530">
+<ul>
+<li class="data-line-530">
+<p>Ke zrušení dochází po vykonání všech instrukcí</p>
+<div class="ulist data-line-531">
+<ul>
+<li class="data-line-531">
+<p>Volání jádra exit</p>
+</li>
+<li class="data-line-532">
+<p>Volání jádra abort vůči child procesu (parent končí a ukončuje potomky)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-533">
+<p>Je-li ukončen parent process pak musí být ukončeni i všichni potomci (odhlášení uživatele nebo ukončení procesu na tvrdo)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-535">
+<h4 id="_běh_procesu">Běh procesu</h4>
+<div class="ulist data-line-536">
+<ul>
+<li class="data-line-536">
+<p>Autonomní a kooperující procesy</p>
+</li>
+<li class="data-line-537">
+<p>Možnosti spolupráce procesů</p>
+<div class="ulist data-line-538">
+<ul>
+<li class="data-line-538">
+<p>Sdílení informací</p>
+</li>
+<li class="data-line-539">
+<p>Urychlení výpočtu (vytvoření paralelního procesu)</p>
+</li>
+<li class="data-line-540">
+<p>Modularita (pro každý modul zvláštní proces)</p>
+</li>
+<li class="data-line-541">
+<p>Zvýšení pohodlí (uživatel spustí více procesů najednou)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-542">
+<p>Procesy mohou běžet těmito způsoby</p>
+<div class="ulist data-line-543">
+<ul>
+<li class="data-line-543">
+<p>Sekvenčně (další proces spuštěn po ukončení předchozího)</p>
+</li>
+<li class="data-line-544">
+<p>Sekvenčně-paralelně (více procesů se dělí o čas procesoru, mutitasking)</p>
+</li>
+<li class="data-line-545">
+<p>Paralelně (více procesů na více procesorech s podporou multitaskingu)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-547">
+<h4 id="_přidělování_procesoru">Přidělování procesoru</h4>
+<div class="ulist data-line-548">
+<ul>
+<li class="data-line-548">
+<p>Základní modul systému</p>
+<div class="ulist data-line-549">
+<ul>
+<li class="data-line-549">
+<p>Plánovač procesu</p>
+</li>
+<li class="data-line-550">
+<p>Dispatcher (provádí přepnutí kontextu)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-551">
+<p>Plánovači</p>
+<div class="ulist data-line-552">
+<ul>
+<li class="data-line-552">
+<p>Plánovači úloh</p>
+<div class="ulist data-line-553">
+<ul>
+<li class="data-line-553">
+<p>Vybírá úlohy ke spuštění</p>
+</li>
+<li class="data-line-554">
+<p>Spouští se s delší frekvencí (až minuty)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-555">
+<p>Plánovači procesů</p>
+<div class="ulist data-line-556">
+<ul>
+<li class="data-line-556">
+<p>Vybírá se z připravených procesů</p>
+</li>
+<li class="data-line-557">
+<p>Spouští se s velkou frekvencí (desetiny milisekundy)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-558">
+<p>V některých OS není plánovač a všechny nové úlohy se rovnou zavádí</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-560">
+<h4 id="_metody_vybírání_procesů_z_fronty">Metody vybírání procesů z fronty</h4>
+<div class="ulist data-line-561">
+<ul>
+<li class="data-line-561">
+<p>FIFO fronta</p>
+</li>
+<li class="data-line-562">
+<p>Prioritní fronta</p>
+</li>
+<li class="data-line-563">
+<p>SJF (Short job first)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-565">
+<h4 id="_prioritní_plánování">Prioritní plánování</h4>
+<div class="paragraph data-line-566">
+<p>Každý proces má stanovenou prioritu
+* Staticky
+* Dynamicky</p>
+</div>
+<div class="paragraph data-line-570">
+<p>Priority v reálných OS
+* Linux -20 nevyšší až 19 nejnižší (změna pomocí nice a renice)
+* Windows 0 nejnižší až 31 nejvyšší (změna pomocí task manageru)</p>
+</div>
+</div>
+<div class="sect3 data-line-574">
+<h4 id="_přepnutí_kontextu">Přepnutí kontextu</h4>
+<div class="ulist data-line-575">
+<ul>
+<li class="data-line-575">
+<p>Střídání procesů = přepnutí kontextu</p>
+</li>
+<li class="data-line-576">
+<p>Kontext procesu = informace o procesu</p>
+</li>
+<li class="data-line-577">
+<p>Uložení a obnovení kontextu</p>
+</li>
+<li class="data-line-578">
+<p>Kontext procesu</p>
+<div class="ulist data-line-579">
+<ul>
+<li class="data-line-579">
+<p>Obsah adresových registrů</p>
+</li>
+<li class="data-line-580">
+<p>Registr příznaků</p>
+</li>
+<li class="data-line-581">
+<p>stav dalších zařízení, které proces používá</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="sect1 data-line-397">
+</div>
+</div>
+<div class="sect1 data-line-583">
 <h2 id="_7_otázka">7. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-398">
+<div class="sect2 data-line-584">
 <h3 id="_multitasking_a_jeho_druhy">Multitasking a jeho druhy</h3>
-
+<div class="paragraph data-line-585">
+<p>Multitasking je schopnost OS provádět několik procesů současně. Jádro rychle přepíná kontext (střídá procesy) takže uživatel má dojem, že běží současně.</p>
+</div>
+<div class="sect3 data-line-587">
+<h4 id="_nepreemptivní_multitasking">Nepreemptivní multitasking</h4>
+<div class="ulist data-line-588">
+<ul>
+<li class="data-line-588">
+<p>Pseudomultitasking</p>
+<div class="ulist data-line-589">
+<ul>
+<li class="data-line-589">
+<p>Na úrovni procesů si mohou navzájem předat procesor (rezidentní volání programů MS DOS)</p>
+</li>
+<li class="data-line-590">
+<p>Omezené přepínání (O přepínání se stará jeden zvláštní program)</p>
+<div class="ulist data-line-591">
+<ul>
+<li class="data-line-591">
+<p>Možné poze u speciálně naprogramovaných aplikací (Mac OS před verzí 5 program Finder)</p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-592">
+<p>Neomezené přepínání</p>
+<div class="ulist data-line-593">
+<ul>
+<li class="data-line-593">
+<p>Všechny programy (Mac OS do verze 6)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-594">
+<p>Kooperativní multitasking</p>
+<div class="ulist data-line-595">
+<ul>
+<li class="data-line-595">
+<p>Vylepšení neomezeného přepínání</p>
+</li>
+<li class="data-line-596">
+<p>Pokud proces běží na popředí a čeká na I/O pak se procesor půjčí na krátkou dobu procesu na pozadí</p>
+</li>
+<li class="data-line-597">
+<p>Uživatel si sám určí, který proces je na popředí přepnutím</p>
+</li>
+<li class="data-line-598">
+<p>Procesy musí spolupracovat (předávat si procesor)</p>
+</li>
+<li class="data-line-599">
+<p>Pokud je proces špatně naprogramován pak to neumí</p>
+</li>
+<li class="data-line-600">
+<p>Windows před Win95</p>
+</li>
+<li class="data-line-601">
+<p>Mac OS před Mac OS X</p>
+</li>
+<li class="data-line-602">
+<p>iOS</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3 data-line-604">
+<h4 id="_premptivní_multitasking">Premptivní multitasking</h4>
+<div class="ulist data-line-605">
+<ul>
+<li class="data-line-605">
+<p>Pravidelné přepínání (každý proces smí být kdykolic přerušen)</p>
+</li>
+<li class="data-line-606">
+<p>Sdílení času (k přepínání dochází k pravidelných časových intervalech nebo pokud dojde k přerušení/ukončení procesu)</p>
+</li>
+<li class="data-line-607">
+<p>UNIX včetně Linux</p>
+</li>
+<li class="data-line-608">
+<p>Windows NT a lepší</p>
+</li>
+<li class="data-line-609">
+<p>Windows 95 a lepší</p>
+</li>
+<li class="data-line-610">
+<p>Mac OS X</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="sect1 data-line-400">
+</div>
+</div>
+<div class="sect1 data-line-612">
 <h2 id="_8_otázka">8. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-401">
+<div class="sect2 data-line-613">
 <h3 id="_synchronizace_procesů">Synchronizace procesů</h3>
 
 </div>
-<div class="sect2 data-line-402">
+<div class="sect2 data-line-614">
 <h3 id="_kritická_sekce_a_její_řešení">Kritická sekce a její řešení</h3>
 
 </div>
 </div>
 </div>
-<div class="sect1 data-line-404">
+<div class="sect1 data-line-616">
 <h2 id="_9_otázka">9. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-405">
+<div class="sect2 data-line-617">
 <h3 id="_synchronizační_problémy">Synchronizační problémy</h3>
 
 </div>
 </div>
 </div>
-<div class="sect1 data-line-407">
+<div class="sect1 data-line-619">
 <h2 id="_10_otázka">10. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-408">
+<div class="sect2 data-line-620">
 <h3 id="_deadlock_a_jeho_řešení">Deadlock a jeho řešení</h3>
 
 </div>
 </div>
 </div>
-<div class="sect1 data-line-410">
+<div class="sect1 data-line-622">
 <h2 id="_11_otázka">11. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-411">
+<div class="sect2 data-line-623">
 <h3 id="_struktura_odkládacího_zařízení_soubor_adresář_plánování_disku">Struktura odkládacího zařízení, soubor, adresář, plánování disku.</h3>
 
 </div>
 </div>
 </div>
-<div class="sect1 data-line-413">
+<div class="sect1 data-line-625">
 <h2 id="_12_otázka">12. Otázka</h2>
 <div class="sectionbody">
-<div class="sect2 data-line-414">
+<div class="sect2 data-line-626">
 <h3 id="_souborové_systémy">Souborové systémy</h3>
 
 </div>
-<div class="sect2 data-line-415">
+<div class="sect2 data-line-627">
 <h3 id="_fat_2">FAT</h3>
 
 </div>
-<div class="sect2 data-line-416">
+<div class="sect2 data-line-628">
 <h3 id="_ntfs_2">NTFS</h3>
 
 </div>
-<div class="sect2 data-line-417">
+<div class="sect2 data-line-629">
 <h3 id="_unixové_souborové_systémy">UNIXové souborové systémy</h3>
 
 </div>
@@ -1830,7 +2480,7 @@ převezmou řízení počítače</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-05-22 23:24:13 +0200
+Last updated 2021-05-23 02:50:26 +0200
 </div>
 </div>
 </body>

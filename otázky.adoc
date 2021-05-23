@@ -506,9 +506,16 @@ image::procesStavDiagram.png[Proces stav diagram Pech]
 
 image::procesStavDiagramPred.png[Proces stav diagram přednáška]
 
+Popis stavů
+* Nový proces
+* Probíhající (právě je vykonáván)
+* Čekající (čeká na událost)
+* Připravený (čeká na procesor)
+* Ukončený
+
 ==== Vytvoření procesu
 * Proces vznikne spuštěním aplikace
-* Volání jádra fork
+** Volání jádra fork
 * Proces může vytvořit nový proces
 ** Parent proces
 ** Child proces
@@ -519,8 +526,88 @@ image::procesStavDiagramPred.png[Proces stav diagram přednáška]
 ** Child je duplikátem parent procesu
 ** Child má vlastní program a ten je zaveden do paměti
 
+==== Ukončení procesu
+* Ke zrušení dochází po vykonání všech instrukcí
+** Volání jádra exit
+** Volání jádra abort vůči child procesu (parent končí a ukončuje potomky)
+* Je-li ukončen parent process pak musí být ukončeni i všichni potomci (odhlášení uživatele nebo ukončení procesu na tvrdo)
+
+==== Běh procesu
+* Autonomní a kooperující procesy
+* Možnosti spolupráce procesů
+** Sdílení informací
+** Urychlení výpočtu (vytvoření paralelního procesu)
+** Modularita (pro každý modul zvláštní proces)
+** Zvýšení pohodlí (uživatel spustí více procesů najednou)
+* Procesy mohou běžet těmito způsoby
+** Sekvenčně (další proces spuštěn po ukončení předchozího)
+** Sekvenčně-paralelně (více procesů se dělí o čas procesoru, mutitasking)
+** Paralelně (více procesů na více procesorech s podporou multitaskingu)
+
+==== Přidělování procesoru
+* Základní modul systému
+** Plánovač procesu
+** Dispatcher (provádí přepnutí kontextu)
+* Plánovači
+** Plánovači úloh
+*** Vybírá úlohy ke spuštění
+*** Spouští se s delší frekvencí (až minuty)
+** Plánovači procesů
+*** Vybírá se z připravených procesů 
+*** Spouští se s velkou frekvencí (desetiny milisekundy)
+** V některých OS není plánovač a všechny nové úlohy se rovnou zavádí
+
+==== Metody vybírání procesů z fronty
+* FIFO fronta
+* Prioritní fronta
+* SJF (Short job first)
+
+==== Prioritní plánování
+Každý proces má stanovenou prioritu
+* Staticky
+* Dynamicky
+
+Priority v reálných OS
+* Linux -20 nevyšší až 19 nejnižší (změna pomocí nice a renice)
+* Windows 0 nejnižší až 31 nejvyšší (změna pomocí task manageru)
+
+==== Přepnutí kontextu
+* Střídání procesů = přepnutí kontextu
+* Kontext procesu = informace o procesu
+* Uložení a obnovení kontextu
+* Kontext procesu
+** Obsah adresových registrů
+** Registr příznaků
+** stav dalších zařízení, které proces používá
+
 == 7. Otázka
 === Multitasking a jeho druhy
+Multitasking je schopnost OS provádět několik procesů současně. Jádro rychle přepíná kontext (střídá procesy) takže uživatel má dojem, že běží současně.
+
+==== Nepreemptivní multitasking
+* Pseudomultitasking
+** Na úrovni procesů si mohou navzájem předat procesor (rezidentní volání programů MS DOS)
+** Omezené přepínání (O přepínání se stará jeden zvláštní program)
+*** Možné poze u speciálně naprogramovaných aplikací (Mac OS před verzí 5 program Finder)
+** Neomezené přepínání
+*** Všechny programy (Mac OS do verze 6)
+* Kooperativní multitasking
+** Vylepšení neomezeného přepínání
+** Pokud proces běží na popředí a čeká na I/O pak se procesor půjčí na krátkou dobu procesu na pozadí
+** Uživatel si sám určí, který proces je na popředí přepnutím
+** Procesy musí spolupracovat (předávat si procesor)
+** Pokud je proces špatně naprogramován pak to neumí
+** Windows před Win95
+** Mac OS před Mac OS X
+** iOS
+
+==== Premptivní multitasking
+* Pravidelné přepínání (každý proces smí být kdykolic přerušen)
+* Sdílení času (k přepínání dochází k pravidelných časových intervalech nebo pokud dojde k přerušení/ukončení procesu)
+* UNIX včetně Linux
+* Windows NT a lepší
+* Windows 95 a lepší
+* Mac OS X
 
 == 8. Otázka
 === Synchronizace procesů
